@@ -17,3 +17,7 @@
 
 # Ignore bundler cache
 /vendor/bundle
+
+# Ignore disk store
+/store
+!/store/.keep

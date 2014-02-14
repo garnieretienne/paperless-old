@@ -1,0 +1,6 @@
+.row
+  .large-4.columns
+    %h2= @document.title
+.row
+  .large-12.columns
+    = link_to "Download", document_download_path(@document.id), class: "button"

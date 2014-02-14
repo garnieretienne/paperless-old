@@ -6,4 +6,8 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
+    .row
+      .large-12.columns
+        #header
+          %h1= link_to "Paperless", root_path
     = yield

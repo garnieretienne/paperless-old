@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Document 1
+  source: document_key_1
+
+two:
+  title: Document 2
+  source: document_key_2

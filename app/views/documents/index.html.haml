@@ -1,0 +1,11 @@
+.row
+  .large-12.columns
+    = link_to "Add new document", new_document_path, class: "button"
+.row
+  .large-12.columns
+    %table.documents
+      %tbody
+        - @documents.each do |document|
+          %tr
+            %td= link_to document.title, document_path(document.id)
+            %td.date= document.created_at.to_date.to_formatted_s(:long)

@@ -12,4 +12,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def fixture_file_path(filename)
+    Rails.root.join('test', 'fixtures', 'files', filename).to_s
+  end
 end

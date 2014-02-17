@@ -52,3 +52,6 @@ gem 'foundation-rails'
 
 # Use HAML templates
 gem 'haml-rails'
+
+# Use Carrierwave to handle files
+gem 'carrierwave'

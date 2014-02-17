@@ -23,7 +23,7 @@ class DocumentsController < ApplicationController
 
   def download
     document = Document.find(params[:document_id])
-    send_file document.file, filename: document.to_filename
+    send_file document.file.url, filename: document.to_filename
   end
 
   private

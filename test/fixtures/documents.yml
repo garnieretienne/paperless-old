@@ -2,8 +2,8 @@
 
 one:
   title: Document 1
-  source: document_key_1
+  file: document_key_1
 
 two:
   title: Document 2
-  source: document_key_2
+  file: document_key_2

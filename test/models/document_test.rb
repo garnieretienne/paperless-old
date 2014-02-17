@@ -1,11 +1,10 @@
 require 'test_helper'
 
 class DocumentTest < ActiveSupport::TestCase
-  FileDouble = Struct.new(:path, :original_filename)
 
   def setup
-    @file = FileDouble.new(fixture_file_path('empty.pdf'), "empty.pdf")
-    @document = Document.new(title: "My Document", file: @file)
+    @file = File.new fixture_file_path('empty.pdf')
+    @document = Document.new title: "My Document", file: @file
   end
 
   test "should create a correct document" do
@@ -18,9 +17,9 @@ class DocumentTest < ActiveSupport::TestCase
     assert @document.errors[:title].include? "can't be blank"
   end
 
-  test "should have a source file" do
-    @document.source = nil
-    assert !@document.valid?
-    assert @document.errors[:source].include? "can't be blank"
+  test "should have a file" do
+    document = Document.new title: "My Document"
+    assert !document.valid?
+    assert document.errors[:file].include? "can't be blank"
   end
 end

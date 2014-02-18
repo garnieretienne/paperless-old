@@ -17,6 +17,12 @@ class DocumentTest < ActiveSupport::TestCase
     assert @document.errors[:title].include? "can't be blank"
   end
 
+  test "title should be unique" do
+    @document.title = "Document 1"
+    assert !@document.save
+    assert @document.errors[:title].include? "has already been taken"
+  end
+
   test "should have a file" do
     document = Document.new title: "My Document"
     assert !document.valid?

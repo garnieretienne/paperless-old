@@ -3,7 +3,7 @@ class Document < ActiveRecord::Base
 
   has_many :pages
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :file, presence: true
 
   before_create :extract_pages

@@ -16,6 +16,10 @@ class Document < ActiveRecord::Base
     "#{title.gsub(/ /, '_')}.pdf"
   end
 
+  def thumb
+    pages.first.snapshot.thumb
+  end
+
   def extract_pages
     Dir.mktmpdir do |tmp|
 

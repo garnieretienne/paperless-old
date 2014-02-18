@@ -19,7 +19,7 @@ class DocumentTest < ActiveSupport::TestCase
 
   test "title should be unique" do
     @document.title = "Document 1"
-    assert !@document.save
+    assert !@document.valid?
     assert @document.errors[:title].include? "has already been taken"
   end
 
@@ -32,5 +32,10 @@ class DocumentTest < ActiveSupport::TestCase
   test "should extract pages from the document at creation" do
     assert @document.save
     assert_equal 1, @document.pages.count
+  end
+
+  test "should display the first page thumbnail as document thumbnail" do
+    document = documents(:two)
+    assert_equal document.pages.first.snapshot.thumb.url, document.thumb.url
   end
 end

@@ -55,3 +55,4 @@ gem 'haml-rails'
 
 # Use Carrierwave to handle files
 gem 'carrierwave'
+gem 'mini_magick'

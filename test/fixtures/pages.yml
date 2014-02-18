@@ -9,3 +9,8 @@ two:
   number: 1
   snapshot: page_key_2
   document: two
+
+three:
+  number: 2
+  snapshot: page_key_3
+  document: two

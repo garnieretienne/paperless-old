@@ -22,4 +22,9 @@ class DocumentTest < ActiveSupport::TestCase
     assert !document.valid?
     assert document.errors[:file].include? "can't be blank"
   end
+
+  test "should extract pages from the document at creation" do
+    assert @document.save
+    assert_equal 1, @document.pages.count
+  end
 end

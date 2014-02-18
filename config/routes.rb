@@ -2,6 +2,9 @@ Paperless::Application.routes.draw do
 
   resources :documents do
     get :download
+    resources :pages do
+      get :snapshot
+    end
   end
 
   root "documents#index"

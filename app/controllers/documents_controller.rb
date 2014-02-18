@@ -19,6 +19,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    @pages = @document.pages.order(:number)
   end
 
   def download

@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140130162639) do
+ActiveRecord::Schema.define(version: 20140217175230) do
 
   create_table "documents", force: true do |t|
     t.string   "title",      null: false
     t.string   "file",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.integer  "number",      null: false
+    t.string   "snapshot",    null: false
+    t.integer  "document_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -55,3 +55,6 @@ gem 'haml-rails'
 
 # Use Carrierwave to handle files
 gem 'carrierwave'
+
+# Use Docsplit to work on PDF files
+gem 'docsplit'

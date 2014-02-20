@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  include ImageService
 
   def index
     @documents = Document.order(created_at: :desc)
@@ -29,7 +30,7 @@ class DocumentsController < ApplicationController
 
   def thumb
     document = Document.find params[:document_id]
-    send_file document.thumb.url, inline: true
+    serve_image document.thumb.url, document.created_at, document.cache_key
   end
 
   private

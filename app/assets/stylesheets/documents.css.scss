@@ -6,6 +6,7 @@ $black: #2D2D2D;
 $blue: #8B7EEC;
 $orange: #FF7F34;
 $green: #5AC73A;
+$red: #E12626;
 
 $helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $georgia: Georgia, Cambria, "Times New Roman", Times, serif;
@@ -112,6 +113,10 @@ form {
   width: auto;
   border: 0;
   min-width: 8em;
+}
+
+.button-warning {
+  background-color: $red;
 }
 
 .thumb {

@@ -15,3 +15,8 @@
       %li= "Date: #{@document.created_at.to_date.to_formatted_s(:long)}"
       %li= "Pages: #{@pages.length}"
     = link_to "Download original", document_download_path(@document.id), class: "button"
+    = link_to "Destroy this document", 
+        document_path(@document.id), 
+        method: :delete, 
+        confirm: "The document will be deleted completely. Are you sure ?",
+        class: "button button-warning"

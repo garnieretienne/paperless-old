@@ -18,6 +18,12 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def destroy
+    @document = Document.find(params[:id])
+    @document.destroy
+    redirect_to documents_path
+  end
+
   def show
     @document = Document.find(params[:id])
     @pages = @document.pages.order(:number)

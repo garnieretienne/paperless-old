@@ -2,8 +2,10 @@ Paperless::Application.routes.draw do
 
   resources :documents do
     get :download
+    get :thumb
     resources :pages do
       get :snapshot
+      get :thumb
     end
   end
 

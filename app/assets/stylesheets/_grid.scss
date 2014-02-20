@@ -1,0 +1,71 @@
+// Display background color for each elements
+$debug: false;
+// $debug: true;
+
+// Width of a row (100% for fluid layout)
+$width: 100%;
+
+// Number of column in the grid
+$columns: 12;
+
+// Gutter between each columns sides (percentage for fluid layout)
+// Must not be superior to the width of the grid per number of columns
+$gutter: $width/100;
+
+@mixin row($align: stretch) {
+  margin: auto;
+  display: flex;
+  align-items: $align;
+  width: $width;
+
+  @if $debug {
+    background-color: #ADA9FF !important;
+  }
+}
+
+@mixin columns($size, $push: 0) {
+  $column_width: ($width / $columns) * $size - $gutter * 2;
+  $push_width: ($width / $columns) * $push;
+  
+  flex-shrink: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing: border-box;
+  width: $column_width;
+  margin-left: $gutter + $push_width;
+  padding-right: $gutter;
+  margin-right: $gutter;
+  overflow: hidden;
+
+  @if $debug {
+    background-color: #8FF49E !important;
+  }
+}
+
+@mixin block-grid($columns) {
+  $columns_width: 100% / $columns;
+
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-flow: row wrap;
+  align-self: center;
+
+  @if $debug {
+    background-color: #ED8181 !important;
+  }
+
+  > * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing: border-box;
+    padding: 1em;
+    width: $columns_width;
+
+    @if $debug {
+      border: 1px solid black !important;
+      background-color: #EDE775 !important;
+    }
+  }
+}

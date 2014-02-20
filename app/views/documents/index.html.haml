@@ -1,11 +1,16 @@
-.row
-  .large-12.columns
-    = link_to "Add new document", new_document_path, class: "button"
-.row
-  .large-12.columns
-    %table.documents
-      %tbody
-        - @documents.each do |document|
-          %tr
-            %td= link_to document.title, document_path(document.id)
-            %td.date= document.created_at.to_date.to_formatted_s(:long)
+- content_for :content_navigation do
+  %ul.labels-list
+    %li.is_current All documents
+    %li Invoices
+    %li Diplomas
+
+%ul.documents-grid
+  - @documents.each do |document|
+    %li.document-thumb
+      = link_to image_tag(document_thumb_path(document.id), class: "thumb"), document_path(document.id)
+      %p
+        = link_to document.title, document_path(document.id)
+        %br
+        %span.document-thumb-date= document.created_at.to_date.to_formatted_s(:long)
+
+

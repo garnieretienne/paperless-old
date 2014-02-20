@@ -27,6 +27,11 @@ class DocumentsController < ApplicationController
     send_file document.file.url, filename: document.to_filename
   end
 
+  def thumb
+    document = Document.find params[:document_id]
+    send_file document.thumb.url, inline: true
+  end
+
   private
 
   def document_params

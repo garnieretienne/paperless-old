@@ -1,18 +1,227 @@
-$black: #222222;
-$grey: #969696;
+@import "grid";
 
-#header {
-  border-bottom: 1px solid $black;
-  margin-bottom: 1em;
+$gray: #737373;
+$white: #F3F3F3;
+$black: #2D2D2D;
+$blue: #8B7EEC;
+$orange: #FF7F34;
+$green: #5AC73A;
+
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, Cambria, "Times New Roman", Times, serif;
+$lucida-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$monospace: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+$verdana: Verdana, Geneva, sans-serif;
+
+// Layout
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: $white;
+  color: $black;
+  font-family: $helvetica;
 }
 
-.documents {
+a {
+  color: darken($black, 50%);
+  text-decoration: none;
+}
+
+form {
   width: 100%;
 
-  .date {
+  input {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  input[type=text] {
+    border: 1px solid $gray;
+    padding: 0.4em;
+  }
+
+  label {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
+#header {
+  @include row(center);
+  background-color: $black;
+  padding: 0.5em 0;
+  border-bottom: 2px solid lighten($black, 40%);
+
+  #header-logo {
+    @include columns(2);
+    color: $white;
+
+    h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 1.8em;
+      font-weight: normal;
+    }
+  }
+  
+  #header-navigation {
+    @include columns(4, 6);
     text-align: right;
-    color: $grey;
-    font-size: 0.8em;
-    font-style: italic;
+
+    .button {
+      margin-left: 1em;
+    }
+  }
+
+  #header-browse-link {
+    @include columns(2);
+  }
+
+  #header-add-new-link {
+    
+    @include columns(2); 
+  }
+}
+
+#content {
+  @include row;
+
+  #content-navigation {
+    @include columns(2);
+    border-right: 2px solid darken($white, 5%);
+  }
+
+  #content-main {
+    @include columns(10);
+  }
+}
+
+// Module - General
+
+.button {
+  display: inline-block;
+  padding: 0.6em;
+  background-color: $blue;
+  color: $white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: $verdana;
+  font-size: 0.8em;
+  width: auto;
+  border: 0;
+  min-width: 8em;
+}
+
+.thumb {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 2px 1px $gray;
+}
+
+
+// Module - Business Objects
+
+.documents-grid {
+  @include block-grid(6);
+  $thumb_image_size: 200px;
+
+  .document-thumb {
+    text-align: center;
+
+    img {
+      max-width: $thumb_image_size;
+      max-height: $thumb_image_size;
+      display: block;
+      margin: auto;
+      margin-bottom: 1em;
+    }
+
+    .document-thumb-date {
+      color: $gray;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+  }  
+}
+
+.labels-list {
+  list-style-type: none;
+  padding: 1em 0;
+  margin: 0;
+
+  li {
+    padding: 0.6em;
+    text-align: right;
+    margin-bottom: 1em;
+    border-bottom: 2px solid $green;
+
+    &.is_current {
+      font-weight: bold;
+    }
+  }
+}
+
+.document-reader {
+  @include row;
+
+  .document-reader-pages {
+    @include columns(8);
+    list-style-type: none;
+    padding: 1em;
+    margin: 0;
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 1em auto;
+    }
+  }
+
+  .document-reader-info {
+    @include columns(4);
+
+    h2 {
+      border-bottom: 2px solid darken($white, 5%);
+    }
+
+    .document-reader-metadata {
+      list-style-type: none;
+      font-family: $monospace;
+      padding: 0;
+    }
+  }
+}
+
+.document-index {
+  list-style-type: none;
+  padding: 1em;
+  margin: 0;
+
+  li {
+    margin: 1em 0;
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin: auto;
+    }
+
+    .document-index-caption {
+      text-align: center;
+      color: $gray;
+      margin: 0.4em 0;
+    }
+  }
+}
+
+.document-upload {
+  @include row;
+  padding: 1em;
+
+  .document-upload-form {
+    @include columns(6);
   }
 }

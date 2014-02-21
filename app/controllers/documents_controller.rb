@@ -12,7 +12,7 @@ class DocumentsController < ApplicationController
   def create
     @document = Document.new(document_params)
     if @document.save
-      redirect_to documents_path
+      redirect_to document_path(@document.id)
     else
       render :new
     end

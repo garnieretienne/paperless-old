@@ -25,7 +25,7 @@ class Document < ActiveRecord::Base
 
       extracted_pages = Paperless::PDFUtils.convert_to_images file.path, 
         output: tmp,
-        dpi: 300
+        dpi: 150
       extracted_pages.each_index do |index|
         snapshot_filename = extracted_pages[index]
         pages.new number: index, snapshot: File.new("#{tmp}/#{snapshot_filename}")

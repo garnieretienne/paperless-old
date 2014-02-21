@@ -104,6 +104,7 @@ form {
 .button {
   display: inline-block;
   padding: 0.6em;
+  margin: 0.4em auto;
   background-color: $blue;
   color: $white;
   text-decoration: none;
@@ -137,8 +138,8 @@ form {
     text-align: center;
 
     img {
-      max-width: $thumb_image_size;
-      max-height: $thumb_image_size;
+      max-width: 100%;
+      width: $thumb_image_size;
       display: block;
       margin: auto;
       margin-bottom: 1em;

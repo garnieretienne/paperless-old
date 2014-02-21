@@ -28,7 +28,7 @@ class Document < ActiveRecord::Base
         dpi: 150
       extracted_pages.each_index do |index|
         snapshot_filename = extracted_pages[index]
-        pages.new number: index, snapshot: File.new("#{tmp}/#{snapshot_filename}")
+        pages.new number: index + 1, snapshot: File.new("#{tmp}/#{snapshot_filename}")
       end
     end
     pages

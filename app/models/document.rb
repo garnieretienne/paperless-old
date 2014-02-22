@@ -11,10 +11,6 @@ class Document < ActiveRecord::Base
 
   before_create :extract_pages
 
-  def title=(new_title)
-    super new_title.try(:titleize)
-  end
-
   def to_filename
     "#{title.gsub(/ /, '_')}.pdf"
   end

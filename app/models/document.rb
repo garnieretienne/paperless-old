@@ -7,7 +7,7 @@ class Document < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :file, presence: true
 
-  scope :unclassed, where(label_id: nil)
+  scope :unclassed, -> {where(label_id: nil)}
 
   before_create :extract_pages
 

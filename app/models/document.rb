@@ -7,6 +7,7 @@ class Document < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :file, presence: true
 
+  default_scope { order(created_at: :desc) }
   scope :unclassed, -> {where(label_id: nil)}
 
   before_create :extract_pages

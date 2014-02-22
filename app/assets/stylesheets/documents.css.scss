@@ -56,6 +56,7 @@ form {
 
   input[type=submit] {
     display: block;
+    width: auto;
   }
 }
 
@@ -74,6 +75,10 @@ form {
       margin: 0;
       font-size: 1.8em;
       font-weight: normal;
+
+      a {
+        color: inherit;
+      }
     }
   }
   
@@ -239,6 +244,15 @@ form {
   padding: 1em;
 
   .document-upload-form {
+    @include columns(6);
+  }
+}
+
+.label-modification {
+  @include row;
+  padding: 1em;
+
+  .label-modification-form {
     @include columns(6);
   }
 }

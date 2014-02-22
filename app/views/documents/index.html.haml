@@ -3,6 +3,7 @@
     %li{class: (@label.nil? ? "is_current" : "")}= link_to "Unclassed", documents_path
     - @labels.each do |label|
       %li{class: (@label == label ? "is_current" : "")}= link_to label.name, label_documents_path(label.id)
+  = link_to "Add new category", new_label_path, class: "button"
 
 %ul.documents-grid
   - @documents.each do |document|

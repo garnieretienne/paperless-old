@@ -8,7 +8,7 @@
   %body
     #header
       #header-logo
-        %h1 Paperless
+        %h1= link_to "Paperless", root_path
       #header-navigation
         = link_to "Browse documents", documents_path, class: "button"
         = link_to "Add document", new_document_path, class: "button"

@@ -38,4 +38,8 @@ class DocumentTest < ActiveSupport::TestCase
     document = documents(:two)
     assert_equal document.pages.first.snapshot.thumb.url, document.thumb.url
   end
+
+  test "should return all unclassed documents" do
+    assert_equal 1, Document.unclassed.count
+  end
 end

@@ -38,7 +38,13 @@ form {
     margin-bottom: 1em;
   }
 
-  input[type=text] {
+  select {
+    display: inline-block;
+    margin-bottom: 1em; 
+    min-width: 50%;
+  }
+
+  input[type=text], select {
     border: 1px solid $gray;
     padding: 0.4em;
   }
@@ -46,6 +52,10 @@ form {
   label {
     display: inline-block;
     width: 100%;
+  }
+
+  input[type=submit] {
+    display: block;
   }
 }
 
@@ -104,7 +114,7 @@ form {
 .button {
   display: inline-block;
   padding: 0.6em;
-  margin: 0.4em auto;
+  margin: 0.4em 0;
   background-color: $blue;
   color: $white;
   text-decoration: none;
@@ -114,6 +124,7 @@ form {
   width: auto;
   border: 0;
   min-width: 8em;
+  text-align: center;
 }
 
 .button-warning {

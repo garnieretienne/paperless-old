@@ -2,6 +2,9 @@
   = form_for @document, html: {class: "document-upload-form"} do |f|
     = f.label :title
     = f.text_field :title
-    = f.label :file
-    = f.file_field :file
-    = f.submit "Upload", class: "button"
+    = f.label :label_id, "Category"
+    = f.collection_select :label_id, @labels, :id, :name, include_blank: "Unclassed"
+    - if @document.new_record?
+      = f.label :file
+      = f.file_field :file
+    = f.submit @document.new_record? ? "Upload" : "Save", class: "button"

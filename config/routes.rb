@@ -1,5 +1,9 @@
 Paperless::Application.routes.draw do
 
+  resources :labels do
+    resources :documents
+  end
+
   resources :documents do
     get :download
     get :thumb

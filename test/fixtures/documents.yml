@@ -3,8 +3,10 @@
 one:
   title: Document 1
   file: document_key_1
+  label:
 
 two:
   title: Document 2
   file: document_key_2
+  label: diplomas
 

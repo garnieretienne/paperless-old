@@ -36,7 +36,6 @@ class DocumentTest < ActiveSupport::TestCase
 
   test "should extract text from the document at creation" do
     document = Document.create title: "OCR test", file: File.new(fixture_file_path('ocr.pdf'))
-    debugger
     assert_not_empty document.text
   end
 

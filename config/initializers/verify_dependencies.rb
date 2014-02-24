@@ -1,5 +1,5 @@
 # Verify required binaries are installed on the system
-Paperless::DEPENDENCIES = %w(tesseract pdftoppm pdfimages pdftotext)
+Paperless::DEPENDENCIES = %w(convert identify tesseract pdftoppm pdfimages pdftotext)
 
 # Cross-platform way of finding an executable in the $PATH.
 # Src: http://stackoverflow.com/questions/2108727/which-in-ruby-checking-if-program-exists-in-path-from-ruby

@@ -34,6 +34,12 @@ class DocumentTest < ActiveSupport::TestCase
     assert_equal 1, @document.pages.count
   end
 
+  test "should extract text from the document at creation" do
+    document = Document.create title: "OCR test", file: File.new(fixture_file_path('ocr.pdf'))
+    debugger
+    assert_not_empty document.text
+  end
+
   test "should display the first page thumbnail as document thumbnail" do
     document = documents(:two)
     assert_equal document.pages.first.snapshot.thumb.url, document.thumb.url

@@ -10,7 +10,7 @@ class Document < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
   scope :unclassed, -> {where(label_id: nil)}
 
-  before_create :extract_pages
+  before_create :extract_pages, :extract_text
 
   def to_filename
     "#{title.gsub(/ /, '_')}.pdf"
@@ -22,7 +22,6 @@ class Document < ActiveRecord::Base
 
   def extract_pages
     Dir.mktmpdir do |tmp|
-
       extracted_pages = Paperless::PDFUtils.convert_to_images file.path, 
         output: tmp,
         dpi: 150
@@ -32,5 +31,9 @@ class Document < ActiveRecord::Base
       end
     end
     pages
+  end
+
+  def extract_text
+    self.text = Paperless::PDFUtils.extract_text_from_file_and_using_ocr file.path
   end
 end

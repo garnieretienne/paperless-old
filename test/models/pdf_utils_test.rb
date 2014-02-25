@@ -21,14 +21,14 @@ class PDFUtilsTest < ActiveSupport::TestCase
     assert_equal ["image-000.ppm"], extracted_images
   end
 
-  test "should extract texts from a PDF file" do
+  test "should extract text from a PDF file" do
     extracted_text = Paperless::PDFUtils.extract_text @pdf_path
-    assert_match /Lorem ipsum dolor sit amet, consectetur adipisicing elit/, extracted_text
+    assert_match /Lorem ipsum dolor sit amet/, extracted_text
   end
 
-  test "should extract all texts (from file and using OCR on images inside the file) from a PDF file" do
-    extracted_text = Paperless::PDFUtils.extract_text_from_file_and_using_ocr @pdf_path
-    assert_match /Lorem ipsum dolor sit amet, consectetur adipisicing elit/, extracted_text
-    assert_match /Hello from picture !/, extracted_text
+  test "should extract text from a PDF file and from images inside a PDF file" do
+    extracted_text = Paperless::PDFUtils.extract_text! @pdf_path
+    assert assert_match /Lorem ipsum dolor sit amet/, extracted_text
+    assert assert_match /Hello from picture !/, extracted_text
   end
 end

@@ -21,3 +21,6 @@
 # Ignore disk store
 /store
 !/store/.keep
+
+# Ignore local ENV file
+/.env

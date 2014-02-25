@@ -44,17 +44,18 @@ module Paperless
       data = IO.read tmpfile.path
     end
 
-    def self.extract_text_from_file_and_using_ocr(pdf_path)
-      data = extract_text pdf_path
+    # Extract text from the PDF file and from images inside the PDF file using OCR
+    def self.extract_text!(pdf_path)
+      text = extract_text pdf_path
 
       Dir.mktmpdir do |tmp|
         images = extract_images pdf_path, output: tmp
         images.each do |image|
-          data << Paperless::OCR.extract("#{tmp}/#{image}")
+          text << Paperless::OCR.extract("#{tmp}/#{image}")
         end
       end
 
-      data
+      text
     end
   end
 end

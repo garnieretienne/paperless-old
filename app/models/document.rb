@@ -34,6 +34,6 @@ class Document < ActiveRecord::Base
   end
 
   def extract_text
-    self.text = Paperless::PDFUtils.extract_text_from_file_and_using_ocr file.path
+    self.text = Paperless::PDFUtils.extract_text! file.path
   end
 end

@@ -4,5 +4,7 @@
       %td.documents-inbox-document-title
         = document.title
         - if document.label
-          %span.documents-inbox-document-label= document.label
+          %span.documents-inbox-document-label
+            %span.documents-inbox-document-label-remove= link_to "X", "#"
+            = document.label
       %td.documents-inbox-document-date= document.created_at.to_date.to_formatted_s(:long)

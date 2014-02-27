@@ -3,8 +3,8 @@ require 'test_helper'
 class LabelTest < ActiveSupport::TestCase
   
   test "should create a correct label" do
-    label = Label.new name: "Letters", tags: "subject to from"
-    assert label.save
+    label = Label.new name: "Letters"
+    assert label.valid?
   end
 
   test "should have a unique name" do
@@ -14,12 +14,6 @@ class LabelTest < ActiveSupport::TestCase
     label.name = "Invoices"
     assert !label.valid?
     assert label.errors[:name].include? "has already been taken"
-  end
-
-  test "should have tag list" do
-    label = Label.new name: "Bank"
-    assert !label.valid?
-    assert label.errors[:tags].include? "can't be blank"
   end
 
   test "should print the label name when asking for string representation" do

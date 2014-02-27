@@ -16,6 +16,6 @@ class LabelsController < ApplicationController
   private
 
   def label_params
-    params.require(:label).permit(:name, :tags)
+    params.require(:label).permit(:name)
   end
 end

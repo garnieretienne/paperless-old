@@ -1,7 +1,5 @@
 class DocumentsController < ApplicationController
   include ImageService
-  
-  before_filter :load_labels
 
   def index
     @label = Label.find_by(id: params[:label_id])
@@ -11,10 +9,6 @@ class DocumentsController < ApplicationController
   def inbox
     @label = "Inbox"
     @documents = Document.recent
-  end
-
-  def new
-    @document = Document.new
   end
 
   def create
@@ -66,10 +60,6 @@ class DocumentsController < ApplicationController
   end
 
   private
-
-  def load_labels
-    @labels = Label.all
-  end
 
   # Support for `FormData` hash if a `document` key is not found
   def document_params

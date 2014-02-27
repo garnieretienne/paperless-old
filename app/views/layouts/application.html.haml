@@ -16,7 +16,9 @@
         %ul.labels-list
           %li{class: (@label.to_s == "Inbox" ? "is_current" : "")}= link_to "Inbox", inbox_documents_path
           %li{class: (@label.nil? ? "is_current" : "")}= link_to "Unclassed", documents_path
+          %hr
+          %li= link_to "Add label", new_label_path, class: "button"
           - @labels.each do |label|
-            %li.label-draggable{class: (@label.to_s == label.to_s ? "is_current" : ""), "data-label-id" => label.id}= link_to label.name, label_documents_path(label.id)
+            %li{class: (@label.to_s == label.to_s ? "is_current" : "")}= link_to label.name, label_documents_path(label.id), class: "label-draggable", "data-label-id" => label.id
       #content-main
         = yield

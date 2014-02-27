@@ -2,8 +2,6 @@
 
 invoices:
   name: Invoices
-  tags: "invoice"
 
 diplomas:
   name: Diplomas
-  tags: "diploma certificate"

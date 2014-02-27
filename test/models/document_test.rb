@@ -51,5 +51,6 @@ class DocumentTest < ActiveSupport::TestCase
   test "should create a valid document instance from a single PDF file" do
     document = Document.new_from_file file: @file
     assert document.valid?
+    assert_equal "Empty", document.title
   end
 end

@@ -57,3 +57,6 @@ gem 'mini_magick'
 
 # Use some of JQuery UI modules
 gem 'jquery-ui-rails'
+
+# Use better titleize support
+gem 'titleize'

@@ -22,7 +22,10 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       format.html { @document.save ? redirect_to(document_path(@document.id)) : render(:new) }
-      format.js { render "shared/reload"}
+      format.js do
+        @redirect_to = inbox_documents_path
+        render "shared/redirect"
+      end
     end
   end
 

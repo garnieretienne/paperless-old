@@ -32,10 +32,11 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
-    if @document.update(document_params)
-      redirect_to document_path(@document.id)
-    else
-      render :new
+    update_document = @document.update(document_params)
+
+    respond_to do |format|
+      format.html { update_document ? redirect_to(document_path(@document.id)) : render(:new) }
+      format.js
     end
   end
 

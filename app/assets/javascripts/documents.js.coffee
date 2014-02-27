@@ -1,13 +1,17 @@
 $(document).ready ->
 
   # Allow to classify documents using Drag and Drop
-  $(".document-draggable").draggable
+  $(".label-draggable").draggable
     start: (e, ui) ->
       $(ui.helper).addClass("is-dragging")
-    opacity: 0.8
     helper: "clone"
-
-  $(".document-droppable-area" ).droppable
+  $(".document-droppable-area").droppable
     hoverClass: "is-hover"
     drop: ( event, ui ) ->
-      console.log "TODO"
+      $document = $(event.target)
+      $label = $(ui.draggable)
+      $.ajax $document.data("document-path"),
+        method: "PATCH",
+        data: {document: {label_id: $label.data("label-id")}},
+        dataType: "script"
+      

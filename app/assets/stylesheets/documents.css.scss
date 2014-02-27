@@ -14,6 +14,23 @@ $lucida-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 $monospace: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
 $verdana: Verdana, Geneva, sans-serif;
 
+// Mixins
+
+// Build a simple labelled div
+@mixin labelled {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: $green;
+  font-size: 0.7em;
+  padding: 0.2em 0.4em;
+  margin: 0 1em;
+  color: $white;
+
+  a {
+    color: $white;
+  }
+}
+
 // Layout
 
 body {
@@ -167,13 +184,11 @@ form {
   }  
 }
 
-.document-draggable {
+.label-draggable {
   cursor: move;
 
   &.is-dragging {
-    background-color: $white;
-    border: 1px solid darken($white, 20%);
-    border-radius: 4px;
+    @include labelled;
   }
 }
 
@@ -184,30 +199,29 @@ form {
   }
 }
 
-.document-inbox {
+.documents-inbox {
   width: 100%;
-  padding: 1em 0;
+  border-collapse: collapse;
+  margin: 1em 0;
 
-  td {
+  .documents-inbox-document {
     padding: 0.3em;
     border-bottom: 1px solid lighten($gray, 40%);
-  }
 
-  .document-inbox-label {
-    display: inline-block;
-    vertical-align: middle;
-    background-color: $green;
-    font-size: 0.7em;
-    padding: 0.2em 0.4em;
-    margin: 0 1em;
-    color: $white;
-  }
+    .documents-inbox-document-title {
+      padding: 0.6em 0;
+    }
 
-  .document-inbox-date {
-    text-align: right;
-    color: $gray;
-    font-style: italic;
-    font-size: 0.8em;
+    .documents-inbox-document-label {
+      @include labelled;
+    }
+
+    .documents-inbox-document-date {
+      text-align: right;
+      color: $gray;
+      font-style: italic;
+      font-size: 0.8em;
+    }
   }
 }
 

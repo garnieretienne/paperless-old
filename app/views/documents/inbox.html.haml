@@ -1,8 +1,8 @@
-%table.document-inbox
+%table.documents-inbox
   - @documents.each do |document|
-    %tr.document-draggable
-      %td.document-inbox-title
+    %tr.documents-inbox-document.document-droppable-area{"data-document-path" => document_path(document.id)}
+      %td.documents-inbox-document-title
         = document.title
         - if document.label
-          %span.document-inbox-label= document.label
-      %td.document-inbox-date= document.created_at.to_date.to_formatted_s(:long)
+          %span.documents-inbox-document-label= document.label
+      %td.documents-inbox-document-date= document.created_at.to_date.to_formatted_s(:long)

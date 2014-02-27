@@ -19,10 +19,10 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(document_params)
-    if @document.save
-      redirect_to document_path(@document.id)
-    else
-      render :new
+
+    respond_to do |format|
+      format.html { @document.save ? redirect_to(document_path(@document.id)) : render(:new) }
+      format.js { render "shared/reload"}
     end
   end
 
@@ -36,7 +36,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       format.html { update_document ? redirect_to(document_path(@document.id)) : render(:new) }
-      format.js
+      format.js { render "shared/reload"}
     end
   end
 
@@ -67,7 +67,12 @@ class DocumentsController < ApplicationController
     @labels = Label.all
   end
 
+  # Support for `FormData` hash if a `document` key is not found
   def document_params
-    params.require(:document).permit(:title, :file, :label_id)
+    if params.fetch(:document, false)
+      params.require(:document).permit(:title, :file, :label_id)
+    else
+      params.permit(:file)
+    end
   end
 end

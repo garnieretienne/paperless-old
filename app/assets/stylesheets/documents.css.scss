@@ -31,7 +31,17 @@ $verdana: Verdana, Geneva, sans-serif;
   }
 }
 
+@mixin box-sizing($type) {
+  -moz-box-sizing: $type;
+  -webkit-box-sizing: $type;
+  box-sizing: $type;
+}
+
 // Layout
+
+html, body {
+  height: 100%;
+}
 
 body {
   padding: 0;
@@ -39,6 +49,7 @@ body {
   background-color: $white;
   color: $black;
   font-family: $helvetica;
+  position:relative;
 }
 
 a {
@@ -314,5 +325,23 @@ form {
 
   .label-modification-form {
     @include columns(6);
+  }
+}
+
+.drag-and-drop-files {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: $black;
+  color: $white;
+  font-size: 2em;
+  text-align: center;
+  padding: 2em;
+  @include box-sizing(border-box);
+  opacity:0.8;
+
+  &.is-active {
+    display: block;
   }
 }

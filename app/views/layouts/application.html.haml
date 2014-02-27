@@ -6,6 +6,8 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
+    .drag-and-drop-files{"data-documents-path" => documents_path}
+      You can Drag and Drop PDF files here !
     #header
       #header-logo
         %h1= link_to "Paperless", root_path

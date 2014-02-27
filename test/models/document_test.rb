@@ -47,4 +47,9 @@ class DocumentTest < ActiveSupport::TestCase
   test "should return all unclassed documents" do
     assert_equal 1, Document.unclassed.count
   end
+
+  test "should create a valid document instance from a single PDF file" do
+    document = Document.new_from_file file: @file
+    assert document.valid?
+  end
 end

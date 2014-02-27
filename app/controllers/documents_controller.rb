@@ -18,10 +18,11 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new(document_params)
+    @document = Document.new_from_file(document_params)
+    save_document = @document.save
 
     respond_to do |format|
-      format.html { @document.save ? redirect_to(document_path(@document.id)) : render(:new) }
+      format.html { save_document ? redirect_to(document_path(@document.id)) : render(:new) }
       format.js do
         @redirect_to = inbox_documents_path
         render "shared/redirect"

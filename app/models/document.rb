@@ -13,6 +13,15 @@ class Document < ActiveRecord::Base
 
   before_create :extract_pages, :extract_text
 
+  def self.new_from_file(params)
+    file = params[:file]
+    filename = file.respond_to?(:original_filename) ? file.original_filename : File.basename(file)
+    Document.new(
+      title: File.basename(filename, File.extname(filename)).gsub(/_/, ' '),
+      file: file
+    )
+  end
+
   def date
     created_at.to_date.to_formatted_s(:long)
   end

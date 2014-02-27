@@ -9,8 +9,13 @@ class Document < ActiveRecord::Base
 
   default_scope { order(created_at: :desc) }
   scope :unclassed, -> {where(label_id: nil)}
+  scope :recent, -> {where("created_at >= ?", 10.day.ago)}
 
   before_create :extract_pages, :extract_text
+
+  def date
+    created_at.to_date.to_formatted_s(:long)
+  end
 
   def to_filename
     "#{title.gsub(/ /, '_')}.pdf"

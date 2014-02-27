@@ -9,11 +9,12 @@
     #header
       #header-logo
         %h1= link_to "Paperless", root_path
-      #header-navigation
-        = link_to "Browse documents", documents_path, class: "button"
-        = link_to "Add document", new_document_path, class: "button"
     #content
       #content-navigation
-        = yield :content_navigation
+        %ul.labels-list
+          %li{class: (@label.to_s == "Inbox" ? "is_current" : "")}= link_to "Inbox", inbox_documents_path
+          %li{class: (@label.nil? ? "is_current" : "")}= link_to "Unclassed", documents_path
+          - @labels.each do |label|
+            %li.document-droppable-area{class: (@label.to_s == label.to_s ? "is_current" : "")}= link_to label.name, label_documents_path(label.id)
       #content-main
         = yield

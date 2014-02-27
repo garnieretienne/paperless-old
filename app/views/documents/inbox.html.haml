@@ -1,0 +1,8 @@
+%table.document-inbox
+  - @documents.each do |document|
+    %tr.document-draggable
+      %td.document-inbox-title
+        = document.title
+        - if document.label
+          %span.document-inbox-label= document.label
+      %td.document-inbox-date= document.created_at.to_date.to_formatted_s(:long)

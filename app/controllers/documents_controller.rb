@@ -1,15 +1,20 @@
 class DocumentsController < ApplicationController
   include ImageService
+  
+  before_filter :load_labels
 
   def index
     @label = Label.find_by(id: params[:label_id])
     @documents = @label ? @label.documents : Document.unclassed
-    @labels = Label.all
+  end
+
+  def inbox
+    @label = "Inbox"
+    @documents = Document.recent
   end
 
   def new
     @document = Document.new
-    @labels = Label.all
   end
 
   def create
@@ -17,14 +22,12 @@ class DocumentsController < ApplicationController
     if @document.save
       redirect_to document_path(@document.id)
     else
-      @labels = Label.all
       render :new
     end
   end
 
   def edit
     @document = Document.find(params[:id])
-    @labels = Label.all
   end
 
   def update
@@ -32,7 +35,6 @@ class DocumentsController < ApplicationController
     if @document.update(document_params)
       redirect_to document_path(@document.id)
     else
-      @labels = Label.all
       render :new
     end
   end
@@ -59,6 +61,10 @@ class DocumentsController < ApplicationController
   end
 
   private
+
+  def load_labels
+    @labels = Label.all
+  end
 
   def document_params
     params.require(:document).permit(:title, :file, :label_id)

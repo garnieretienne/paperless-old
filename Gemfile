@@ -63,3 +63,7 @@ gem 'titleize'
 
 # Use a CSS reset
 gem 'normalize-rails'
+
+# Use background-jobs
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', require: nil, group: [:development]

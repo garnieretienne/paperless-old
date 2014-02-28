@@ -11,8 +11,6 @@ class Document < ActiveRecord::Base
   scope :unclassed, -> {where(label_id: nil)}
   scope :recent, -> {where("created_at >= ?", 10.day.ago)}
 
-  before_create :extract_pages, :extract_text
-
   def self.new_from_file(params)
     file = params[:file]
     filename = file.respond_to?(:original_filename) ? file.original_filename : File.basename(file)
@@ -51,5 +49,10 @@ class Document < ActiveRecord::Base
 
   def extract_text
     self.text = Paperless::PDFUtils.extract_text! file.path
+  end
+
+  def post_process
+    ExtractPagesWorker.perform_async(self.id)
+    ExtractTextWorker.perform_async(self.id)
   end
 end

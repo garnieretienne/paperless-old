@@ -16,6 +16,11 @@ Paperless::Application.routes.draw do
     end
   end
 
+  if Rails.env.development?
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   root "documents#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

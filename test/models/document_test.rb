@@ -29,13 +29,14 @@ class DocumentTest < ActiveSupport::TestCase
     assert document.errors[:file].include? "can't be blank"
   end
 
-  test "should extract pages from the document at creation" do
-    assert @document.save
-    assert_equal 1, @document.pages.count
+  test "should extract pages from the document" do
+    @document.extract_pages
+    assert_equal 1, @document.pages.length
   end
 
-  test "should extract text from the document at creation" do
+  test "should extract text from the document" do
     document = Document.create title: "OCR test", file: File.new(fixture_file_path('ocr.pdf'))
+    document.extract_text
     assert_not_empty document.text
   end
 

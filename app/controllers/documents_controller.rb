@@ -15,6 +15,8 @@ class DocumentsController < ApplicationController
     @document = Document.new_from_file(document_params)
     save_document = @document.save
 
+    @document.post_process if save_document
+
     respond_to do |format|
       format.html { save_document ? redirect_to(document_path(@document.id)) : render(:new) }
       format.js do

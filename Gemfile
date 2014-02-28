@@ -60,3 +60,6 @@ gem 'jquery-ui-rails'
 
 # Use better titleize support
 gem 'titleize'
+
+# Use a CSS reset
+gem 'normalize-rails'

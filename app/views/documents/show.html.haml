@@ -1,20 +1,7 @@
-- content_for :content_navigation do
-  %ul.document-index
-    - @pages.each do |page|
-      %li
-        = image_tag document_page_thumb_path(@document.id, page.id), class: "thumb", title: "Go to page ##{page.number}"
-        .document-index-caption= page.number
-
-.document-reader
-  %ul.document-reader-pages
-    - @pages.each do |page|
-      %li= image_tag document_page_snapshot_path(@document.id, page.id), class: "thumb", title: "Page ##{page.number}"
-  .document-reader-info
+.document-info
+  .document-info-data
     %h2= @document.title
-    %ul.document-reader-metadata
-      %li= "Category: #{@document.label || 'Unclassed'}"
-      %li= "Date: #{@document.created_at.to_date.to_formatted_s(:long)}"
-      %li= "Pages: #{@pages.length}"
+  .document-info-actions
     = link_to "Download original", document_download_path(@document.id), class: "button"
     = link_to "Edit this document", edit_document_path(@document.id), class: "button"
     = link_to "Destroy this document", 
@@ -22,3 +9,13 @@
         method: :delete, 
         confirm: "The document will be deleted completely. Are you sure ?",
         class: "button button-warning"
+
+.document-reader
+  %ul.document-reader-pages
+    - @pages.each do |page|
+      %li= image_tag document_page_snapshot_path(@document.id, page.id), class: "thumb", title: "Page ##{page.number}"
+  %ul.document-reader-index
+    - @pages.each do |page|
+      %li
+        = image_tag document_page_thumb_path(@document.id, page.id), class: "thumb", title: "Go to page ##{page.number}"
+        .document-index-caption= page.number

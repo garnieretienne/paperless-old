@@ -1,0 +1,38 @@
+// Variables used across multiple stylesheets
+
+// Colors
+// ------
+
+$gray: #737373;
+$white: #F9F9F9;
+$black: #2D2D2D;
+$blue: #8B7EEC;
+$orange: #FF7F34;
+$green: #5AC73A;
+$red: #E12626;
+
+// Fonts
+// -----
+
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, Cambria, "Times New Roman", Times, serif;
+$lucida-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$monospace: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+$verdana: Verdana, Geneva, sans-serif;
+
+// Grid
+// ----
+
+// Display background color for each elements
+$grid-debug: false;
+// $debug: true;
+
+// Width of a row (100% for fluid layout)
+$grid-width: 100%;
+
+// Number of column in the grid
+$grid-columns: 12;
+
+// Gutter between each columns sides (percentage for fluid layout)
+// Must not be superior to the width of the grid per number of columns
+$grid-gutter: $grid-width/100;

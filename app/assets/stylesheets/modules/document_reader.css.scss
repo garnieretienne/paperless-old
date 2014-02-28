@@ -1,0 +1,42 @@
+@import "globals/all";
+
+// A document reader built with a list of images
+.document-reader {
+  @include row;
+
+  .document-reader-pages {
+    @include columns(8);
+    list-style-type: none;
+    padding: 1em;
+    margin: 0;
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 1em auto;
+    }
+  }
+
+  .document-reader-index {
+    @include columns(2);
+    list-style-type: none;
+    padding: 1em;
+    margin: 0;
+
+    li {
+      margin: 1em 0;
+
+      img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+      }
+
+      .document-index-caption {
+        text-align: center;
+        color: $gray;
+        margin: 0.4em 0;
+      }
+    }
+  }
+}

@@ -21,4 +21,6 @@
           - @labels.each do |label|
             %li{class: (@label.to_s == label.to_s ? "is_current" : "")}= link_to label.name, label_documents_path(label.id), class: "label-draggable", "data-label-id" => label.id
       #content-main
+        #content-main-header
+          = yield :content_header
         = yield

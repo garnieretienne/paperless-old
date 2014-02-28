@@ -1,0 +1,23 @@
+@import "globals/all";
+
+// Simple button
+.button {
+  display: inline-block;
+  padding: 0.4em;
+  margin: 0.4em 0;
+  background-color: $blue;
+  color: $white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: $verdana;
+  font-size: 0.8em;
+  width: auto;
+  border: 0;
+  min-width: 6em;
+  text-align: center;
+}
+
+// Dangerous action button
+.button-warning {
+  background-color: $red;
+}

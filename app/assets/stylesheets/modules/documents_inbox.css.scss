@@ -1,0 +1,33 @@
+@import "globals/all";
+
+// Inbox like document table
+.documents-inbox {
+  width: 100%;
+  border-collapse: collapse;
+
+  .documents-inbox-document {
+    border-bottom: 1px solid lighten($gray, 40%);
+
+    td {
+      padding: 0.6em 1em;
+    }
+
+    .documents-inbox-document-label {
+      @include labelled;
+
+      .documents-inbox-document-label-remove {
+        font-weight: bold;
+        padding-right: 0.4em;
+        border-right: 1px solid $white;
+        cursor: pointer;
+      }
+    }
+
+    .documents-inbox-document-date {
+      text-align: right;
+      color: $gray;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+  }
+}

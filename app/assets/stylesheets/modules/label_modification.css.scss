@@ -1,0 +1,11 @@
+@import "globals/all";
+
+// Form to modify a label
+.label-modification {
+  @include row;
+  padding: 1em;
+
+  .label-modification-form {
+    @include columns(6);
+  }
+}

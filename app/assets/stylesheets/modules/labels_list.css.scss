@@ -1,0 +1,21 @@
+@import "globals/all";
+
+// List of labels for navigation
+.labels-list {
+  list-style-type: none;
+  padding: 1em;
+  margin: 0;
+
+  hr {
+    border: 0;
+    border-top: 1px solid lighten($gray, 40%);
+  }
+
+  li {
+    padding: 0.2em;
+
+    &.is_current {
+      font-weight: bold;
+    }
+  }
+}

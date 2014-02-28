@@ -1,0 +1,25 @@
+@import "globals/all";
+
+// Grid of documents
+.documents-grid {
+  @include block-grid(8);
+  $thumb_image_size: 200px;
+
+  .document-thumb {
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      width: $thumb_image_size;
+      display: block;
+      margin: auto;
+      margin-bottom: 1em;
+    }
+
+    .document-thumb-date {
+      color: $gray;
+      font-style: italic;
+      font-size: 0.8em;
+    }
+  }  
+}

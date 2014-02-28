@@ -1,0 +1,81 @@
+// Mixins used across multiple stylesheets
+
+// Build a simple labelled div
+@mixin labelled {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: $green;
+  font-size: 0.7em;
+  padding: 0.2em 0.4em;
+  margin: 0 1em;
+  color: $white;
+
+  a {
+    color: $white;
+  }
+}
+
+// Box sizing multiplatform css property
+@mixin box-sizing($type) {
+  -moz-box-sizing: $type;
+  -webkit-box-sizing: $type;
+  box-sizing: $type;
+}
+
+// Row grid
+@mixin row($align: stretch) {
+  margin: auto;
+  display: flex;
+  align-items: $align;
+  width: $grid-width;
+
+  @if $grid-debug {
+    background-color: #ADA9FF !important;
+  }
+}
+
+// Column grid
+@mixin columns($size, $push: 0) {
+  $column_width: ($grid-width / $grid-columns) * $size - $grid-gutter * 2;
+  $push_width: ($grid-width / $grid-columns) * $push;
+  
+  flex-shrink: 0;
+  @include box-sizing(border-box);
+  width: $column_width;
+  margin-left: $grid-gutter + $push_width;
+  padding-right: $grid-gutter;
+  margin-right: $grid-gutter;
+  overflow: hidden;
+
+  @if $grid-debug {
+    background-color: #8FF49E !important;
+  }
+}
+
+// Build a block grid of n columns
+@mixin block-grid($columns) {
+  $columns_width: 100% / $columns;
+
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+
+  @if $grid-debug {
+    background-color: #ED8181 !important;
+  }
+
+  > * {
+    @include box-sizing(border-box);
+    padding: 1em;
+    width: $columns_width;
+    overflow: hidden;
+
+    @if $grid-debug {
+      border: 1px solid black !important;
+      background-color: #EDE775 !important;
+    }
+  }
+}

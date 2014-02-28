@@ -1,7 +1,9 @@
 class Label < ActiveRecord::Base
   has_many :documents
+  belongs_to :user
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: {scope: :user_id}
+  validates :user, presence: true
 
   default_scope { order(:name) }
 

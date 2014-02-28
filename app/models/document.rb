@@ -3,13 +3,17 @@ class Document < ActiveRecord::Base
 
   has_many :pages
   belongs_to :label
+  belongs_to :user
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: {scope: :user_id}
   validates :file, presence: true
+  validates :user, presence: true
 
   default_scope { order(created_at: :desc) }
   scope :unclassed, -> {where(label_id: nil)}
   scope :recent, -> {where("created_at >= ?", 10.day.ago)}
+
+  after_commit :post_process, on: :create
 
   def self.new_from_file(params)
     file = params[:file]

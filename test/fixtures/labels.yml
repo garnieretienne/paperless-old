@@ -2,6 +2,8 @@
 
 invoices:
   name: Invoices
+  user: etienne
 
 diplomas:
   name: Diplomas
+  user: etienne

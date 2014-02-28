@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224185036) do
+ActiveRecord::Schema.define(version: 20140228151134) do
 
   create_table "documents", force: true do |t|
     t.string   "title",      null: false
@@ -20,20 +20,33 @@ ActiveRecord::Schema.define(version: 20140224185036) do
     t.datetime "updated_at"
     t.integer  "label_id"
     t.text     "text"
+    t.integer  "user_id"
   end
 
   add_index "documents", ["label_id"], name: "index_documents_on_label_id"
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
 
   create_table "labels", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "labels", ["user_id"], name: "index_labels_on_user_id"
 
   create_table "pages", force: true do |t|
     t.integer  "number",      null: false
     t.string   "snapshot",    null: false
     t.integer  "document_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.string   "email",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

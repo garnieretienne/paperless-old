@@ -4,26 +4,33 @@ class DocumentTest < ActiveSupport::TestCase
 
   def setup
     @file = File.new fixture_file_path('empty.pdf')
-    @document = Document.new title: "My Document", file: @file
+    @owner = users(:etienne)
+    @document = Document.new title: "My Document", file: @file, user: @owner
   end
 
   test "should create a correct document" do
     assert @document.valid?
   end
 
-  test "should have a title" do
+  test "must have a title" do
     @document.title = nil
     assert !@document.valid?
     assert @document.errors[:title].include? "can't be blank"
   end
 
-  test "title should be unique" do
+  test "must have an user" do
+    @document.user_id = nil
+    assert !@document.valid?
+    assert @document.errors[:user].include? "can't be blank"
+  end
+
+  test "title must be unique in the user scope" do
     @document.title = "Document 1"
     assert !@document.valid?
     assert @document.errors[:title].include? "has already been taken"
   end
 
-  test "should have a file" do
+  test "must have a file" do
     document = Document.new title: "My Document"
     assert !document.valid?
     assert document.errors[:file].include? "can't be blank"
@@ -51,6 +58,7 @@ class DocumentTest < ActiveSupport::TestCase
 
   test "should create a valid document instance from a single PDF file" do
     document = Document.new_from_file file: @file
+    document.user = @owner
     assert document.valid?
     assert_equal "Empty", document.title
   end

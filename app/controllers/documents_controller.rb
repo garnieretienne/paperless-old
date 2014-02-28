@@ -2,20 +2,18 @@ class DocumentsController < ApplicationController
   include ImageService
 
   def index
-    @label = Label.find_by(id: params[:label_id])
-    @documents = @label ? @label.documents : Document.unclassed
+    @label = current_user.labels.find_by(id: params[:label_id])
+    @documents = @label ? @label.documents : current_user.documents.unclassed
   end
 
   def inbox
     @label = "Inbox"
-    @documents = Document.recent
+    @documents = current_user.documents.recent
   end
 
   def create
-    @document = Document.new_from_file(document_params)
+    @document = current_user.documents.new_from_file(document_params)
     save_document = @document.save
-
-    @document.post_process if save_document
 
     respond_to do |format|
       format.html { save_document ? redirect_to(document_path(@document.id)) : render(:new) }
@@ -27,11 +25,11 @@ class DocumentsController < ApplicationController
   end
 
   def edit
-    @document = Document.find(params[:id])
+    @document = current_user.documents.find(params[:id])
   end
 
   def update
-    @document = Document.find(params[:id])
+    @document = current_user.documents.find(params[:id])
     update_document = @document.update(document_params)
 
     respond_to do |format|
@@ -41,23 +39,23 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @document = Document.find(params[:id])
+    @document = current_user.documents.find(params[:id])
     @document.destroy
     redirect_to documents_path
   end
 
   def show
-    @document = Document.find(params[:id])
+    @document = current_user.documents.find(params[:id])
     @pages = @document.pages.order(:number)
   end
 
   def download
-    document = Document.find(params[:document_id])
+    document = current_user.documents.find(params[:document_id])
     send_file document.file.url, filename: document.to_filename
   end
 
   def thumb
-    document = Document.find params[:document_id]
+    document = current_user.documents.find params[:document_id]
     serve_image document.thumb.url, document.created_at, document.cache_key
   end
 

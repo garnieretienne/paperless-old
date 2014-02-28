@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+etienne:
+  first_name: Etienne
+  last_name: Garnier
+  email: etienne.garnier@provider.tld
+
+john:
+  first_name: John
+  last_name: Smith
+  email: john.smith@provider.tld

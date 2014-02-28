@@ -1,11 +1,11 @@
 class LabelsController < ApplicationController
 
   def new
-    @label = Label.new
+    @label = current_user.labels.new
   end
 
   def create
-    @label = Label.new(label_params)
+    @label = current_user.labels.new(label_params)
     if @label.save
       redirect_to documents_path
     else

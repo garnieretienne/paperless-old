@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   # Load all labels as they are part of the layout
   before_filter :load_labels
 
+  def current_user
+  	@user ||= User.first
+  end
+
   private
 
   def load_labels
-    @labels = Label.all
+    @labels = current_user.labels.all
   end
 end

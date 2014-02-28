@@ -1,0 +1,12 @@
+@import "globals/all";
+
+// Document header
+.document-header {
+  @include row;
+  @include separation(bottom);
+  padding-bottom: 1em;
+
+  .document-header-info {
+    @include columns(12);
+  }
+}

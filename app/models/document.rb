@@ -28,6 +28,10 @@ class Document < ActiveRecord::Base
     "#{title.gsub(/ /, '_')}.pdf"
   end
 
+  def title_with_label
+    label ? "#{label.name} / #{title}" : title
+  end
+
   def thumb
     pages.first.snapshot.thumb
   end

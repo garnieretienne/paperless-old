@@ -5,7 +5,7 @@
 #header {
   @include row(center);
   padding: 1em 0;
-  border-bottom: 1px solid lighten($gray, 40%);
+  @include separation(bottom);
 
   #header-logo {
     @include columns(2);
@@ -46,7 +46,7 @@
 
   #content-navigation {
     @include columns(2);
-    border-right: 1px solid lighten($gray, 40%);
+    @include separation(right);
   }
 
   #content-main {

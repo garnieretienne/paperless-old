@@ -6,7 +6,7 @@
   border-collapse: collapse;
 
   .documents-inbox-document {
-    border-bottom: 1px solid lighten($gray, 40%);
+    @include separation(bottom);
 
     td {
       padding: 0.6em 1em;

@@ -5,7 +5,7 @@
   @include row;
 
   .document-reader-pages {
-    @include columns(8);
+    @include columns(9);
     list-style-type: none;
     padding: 1em;
     margin: 0;
@@ -18,10 +18,11 @@
   }
 
   .document-reader-index {
-    @include columns(2);
+    @include columns(3);
     list-style-type: none;
     padding: 1em;
     margin: 0;
+    @include separation(right);
 
     li {
       margin: 1em 0;

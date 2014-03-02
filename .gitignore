@@ -24,3 +24,6 @@
 
 # Ignore local ENV file
 /.env
+
+# Ignore vagrant folder
+/.vagrant

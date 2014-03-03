@@ -72,7 +72,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     cd /vagrant
     bundle install --path vendor/bundle
+
+    echo ""
+    echo ">> Run database migrations"
+    echo ""
+
     bundle exec rake db:setup
+
+    echo ""
+    echo ">> Done."
+    echo "   You can start the app running 'bundle exec foreman start' inside the"
+    echo "   '/vagrant' folder."
   SCRIPT
   config.vm.provision "shell", :inline => bootstrap_script, :keep_color => true, :privileged => false
 

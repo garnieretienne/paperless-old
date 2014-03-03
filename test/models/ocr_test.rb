@@ -9,5 +9,10 @@ class OCRTest < ActiveSupport::TestCase
   test "should extract text from an image" do
     assert_match /Hello from picture !/, Paperless::OCR.extract(@image_path)
   end
+
+  test "text cleaner" do
+    text = IO.read fixture_file_path("sample_ocr_output.txt")
+    puts Paperless::OCR.post_process_text(text)
+  end
   
 end

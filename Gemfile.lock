@@ -52,6 +52,9 @@ GEM
     dotenv (0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
+    ffi (1.9.3)
+    ffi-aspell (0.0.3)
+      ffi (>= 1.0.11)
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -169,6 +172,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   debugger
+  ffi-aspell
   foreman
   haml-rails
   jbuilder (~> 1.2)

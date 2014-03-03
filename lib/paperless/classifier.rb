@@ -2,7 +2,9 @@ module Paperless
 
   class Classifier
 
-    def initialize(id)
+    attr_reader :classifier
+
+    def initialize
       @classifier = NBayes::Base.new
     end
 
@@ -12,6 +14,15 @@ module Paperless
 
     def classify(text)
       @classifier.classify(tokenize(text)).max_class
+    end
+
+    def dump(object)
+      @classifier.dump(@classifier)
+    end
+
+    def load(yaml)
+      @classifier.load(yaml)
+      self
     end
 
     private

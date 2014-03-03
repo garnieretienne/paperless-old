@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   after_create :create_labels
 
+  serialize :classifier, Paperless::Classifier.new 
+
   DEFAULT_LABELS = [
     "Insurance", 
     "Vehicle", 

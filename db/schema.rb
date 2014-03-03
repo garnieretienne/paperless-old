@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228151134) do
+ActiveRecord::Schema.define(version: 20140303220756) do
 
   create_table "documents", force: true do |t|
     t.string   "title",      null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140228151134) do
     t.string   "email",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "classifier"
   end
 
 end

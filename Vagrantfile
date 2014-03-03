@@ -64,7 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     echo ">> Install app dependencies"
     echo ""
 
-    sudo apt-get install --assume-yes redis-server imagemagick tesseract-ocr poppler-utils tesseract-ocr-fra libaspell-dev aspell-fra
+    sudo apt-get install --assume-yes redis-server imagemagick tesseract-ocr poppler-utils tesseract-ocr-fra libaspell-dev aspell-fr
     
     echo ""
     echo ">> Run 'bundle install'"

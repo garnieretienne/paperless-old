@@ -88,6 +88,7 @@ GEM
       subexec (~> 0.2.1)
     minitest (4.7.5)
     multi_json (1.8.4)
+    nbayes (0.1.1)
     normalize-rails (3.0)
     polyglot (0.3.3)
     puma (2.8.0)
@@ -180,6 +181,7 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   mini_magick
+  nbayes
   normalize-rails
   puma
   rails (= 4.0.2)

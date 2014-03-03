@@ -70,3 +70,6 @@ gem 'sinatra', '>= 1.3.0', require: nil, group: [:development]
 
 # Use Aspell to correct text
 gem 'ffi-aspell'
+
+# Use Bayes classification
+gem 'nbayes'

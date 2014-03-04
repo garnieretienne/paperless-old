@@ -62,4 +62,17 @@ class DocumentTest < ActiveSupport::TestCase
     assert document.valid?
     assert_equal "Empty", document.title
   end
+
+  # TODO: find a proper way
+  test "updating the label of a document should update its user classifier" do
+    user = users(:etienne)
+    document = user.documents.first
+    document.file = File.new fixture_file_path("empty.pdf")
+    document.text = "OCR FOR THE WAY"
+    label = document.label
+    new_label = Label.where("id <> #{document.label_id}").first
+    document.label = new_label
+    document.save!
+    assert user.classifier.categories.include? new_label.name.to_sym
+  end
 end

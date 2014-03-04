@@ -2,13 +2,13 @@
 
 one:
   title: Document 1
-  file: document_key_1
+  file: empty.pdf
   label:
   user: etienne
 
 two:
   title: Document 2
-  file: document_key_2
+  file: empty.pdf
   label: diplomas
   user: etienne
 

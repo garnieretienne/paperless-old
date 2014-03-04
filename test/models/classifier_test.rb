@@ -17,4 +17,8 @@ class ClassifierTest < ActiveSupport::TestCase
     assert_not_nil dump
     assert_instance_of Paperless::Classifier, @classifier.load(dump)
   end
+
+  test "categories list" do
+    assert @classifier.categories.include?(:good)
+  end
 end

@@ -25,6 +25,10 @@ module Paperless
       self
     end
 
+    def categories
+      @classifier.data.keys
+    end
+
     private
 
     def tokenize(text)

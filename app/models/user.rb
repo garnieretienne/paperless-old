@@ -22,6 +22,17 @@ class User < ActiveRecord::Base
     "Invoices and Warranty"
   ]
 
+  def notify(message, object)
+    case message
+    when :document_updated
+      document = object
+      if document.label_id_changed? || document.text_changed?
+        classifier.train document.label.name, document.text if document.label && document.text
+        save!
+      end
+    end
+  end
+
   private
 
   def create_labels

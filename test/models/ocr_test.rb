@@ -12,7 +12,7 @@ class OCRTest < ActiveSupport::TestCase
 
   test "text cleaner" do
     text = IO.read fixture_file_path("sample_ocr_output.txt")
-    puts Paperless::OCR.post_process_text(text)
+    assert_match /john smith depot date tail/, Paperless::OCR.post_process_text(text)
   end
   
 end

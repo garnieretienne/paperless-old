@@ -1,0 +1,7 @@
+test:
+  tesseract_language: eng
+  aspell_language: en_US
+
+development:
+  tesseract_language: <%= ENV['TESSERACT_LANGUAGE'] %>
+  aspell_language: <%= ENV['ASPELL_LANGUAGE'] %>

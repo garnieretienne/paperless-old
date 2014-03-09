@@ -9,7 +9,7 @@ module Paperless
     def self.extract(image_path)
       data = ""
       Dir.mktmpdir do |tmp|
-        `tesseract "#{pre_process_image(image_path, "#{tmp}/processed")}" #{tmp}/result -l #{TESSERACT_LANGUAGE}`
+        `tesseract "#{pre_process_image(image_path, "#{tmp}/processed")}" #{tmp}/result -l #{PaperlessConfig[:tesseract_language] || "eng"}`
         data = IO.read "#{tmp}/result.txt"
       end
       data
@@ -23,7 +23,7 @@ module Paperless
     def self.post_process_text(text)
       words = []
       speller = FFI::Aspell::Speller.new
-      speller.set('lang', 'fr_FR')
+      speller.set('lang', PaperlessConfig[:aspell_language] || "en_US")
       speller.set('ignore-case', "true")
 
       text.gsub(/\W/  , " ").squeeze(" ").split(" ").each do |word|

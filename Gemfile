@@ -72,4 +72,4 @@ gem 'sinatra', '>= 1.3.0', require: nil, group: [:development]
 gem 'ffi-aspell'
 
 # Use Bayes classification
-gem 'nbayes'
+gem 'nbayes', git: "https://github.com/garnieretienne/nbayes.git"

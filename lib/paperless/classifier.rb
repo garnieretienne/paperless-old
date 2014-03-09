@@ -26,7 +26,7 @@ module Paperless
     end
 
     def categories
-      @classifier.data.keys
+      @classifier.data.categories
     end
 
     private

@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/garnieretienne/nbayes.git
-  revision: 31c9deb0693fb25e8ad02135e89f29c1eba115fa
+  revision: b1c48a9f12a4d6b4a13c5c6159da10bb3909576b
+  branch: feature-remove-category-and-untrain-tokens
   specs:
     nbayes (0.1.2)
 

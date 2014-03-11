@@ -72,4 +72,4 @@ gem 'sinatra', '>= 1.3.0', require: nil, group: [:development]
 gem 'ffi-aspell'
 
 # Use Bayes classification
-gem 'nbayes', git: "https://github.com/garnieretienne/nbayes.git"
+gem 'nbayes', git: "https://github.com/garnieretienne/nbayes.git", branch: "feature-remove-category-and-untrain-tokens"

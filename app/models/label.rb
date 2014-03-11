@@ -10,4 +10,8 @@ class Label < ActiveRecord::Base
   def to_s
     name
   end
+
+  def to_sym
+    name.to_sym
+  end
 end

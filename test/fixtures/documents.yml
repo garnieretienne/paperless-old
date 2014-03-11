@@ -5,10 +5,11 @@ one:
   file: empty.pdf
   label:
   user: etienne
+  text:
 
 two:
   title: Document 2
   file: empty.pdf
   label: diplomas
   user: etienne
-
+  text: "OCR FOR THE WAY"

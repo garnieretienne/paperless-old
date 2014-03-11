@@ -12,6 +12,12 @@ class ClassifierTest < ActiveSupport::TestCase
     assert_equal :good, @classifier.classify("Good joke ! Love this one")
   end
 
+  test "untraining" do
+    @classifier = Paperless::Classifier.new
+    @classifier.untrain :good, "I'm the good one"
+    assert_not_equal :good, @classifier.classify("I'm the good one")
+  end
+
   test "rails serialization" do
     dump = @classifier.dump(@classifier)
     assert_not_nil dump
@@ -20,5 +26,13 @@ class ClassifierTest < ActiveSupport::TestCase
 
   test "categories list" do
     assert @classifier.categories.include?(:good)
+  end
+
+  test "count examples" do
+    assert_equal 1, @classifier.count_examples(:good)
+  end
+
+  test "count tokens" do
+    assert_equal 4, @classifier.count_tokens(:good)
   end
 end

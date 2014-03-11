@@ -14,7 +14,9 @@ class Document < ActiveRecord::Base
   scope :recent, -> {where("created_at >= ?", 10.day.ago)}
 
   after_commit :post_process, on: :create
-  after_save :notify_user
+
+  # Notify user a document has been updated
+  after_save {|document| user.notify :document_updated, document}
 
   def self.new_from_file(params)
     file = params[:file]
@@ -59,11 +61,5 @@ class Document < ActiveRecord::Base
   def post_process
     ExtractPagesWorker.perform_async(self.id)
     ExtractTextWorker.perform_async(self.id)
-  end
-
-  private
-
-  def notify_user
-    user.notify :document_updated, self
   end
 end

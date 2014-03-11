@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include Notify
 
   has_many :labels
   has_many :documents
@@ -9,6 +8,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
 
   after_create :create_labels
+
+  # Events
+  on :document_updated, :train_classifier_with_document
 
   DEFAULT_LABELS = [
     "Insurance", 

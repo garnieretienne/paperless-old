@@ -36,8 +36,16 @@ module Paperless
       @classifier.delete_category category
     end
 
-    def load(yaml)
-      paperless_classifier = YAML.load(yaml)
+    # Support for Active Record 'serialize'
+    def self.dump(object)
+      YAML.dump(object)
+    end
+
+    # Support for Active Record 'serialize':
+    # Load the classifier from the YAML data and execute NBayes 
+    # special loading behavior.
+    def self.load(yaml)
+      paperless_classifier = yaml.nil? ? Paperless::Classifier.new : YAML.load(yaml)
       paperless_classifier.classifier.reset_after_import
       paperless_classifier
     end

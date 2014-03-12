@@ -36,10 +36,16 @@ module Paperless
       @classifier.delete_category category
     end
 
+    def load(yaml)
+      paperless_classifier = YAML.load(yaml)
+      paperless_classifier.classifier.reset_after_import
+      paperless_classifier
+    end
+
     private
 
     def tokenize(text)
-      text.downcase.split /\s+/
+      text.downcase.gsub(/\W/, " ").squeeze("").split
     end
   end
 end

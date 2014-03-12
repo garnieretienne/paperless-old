@@ -7,6 +7,9 @@ class Label < ActiveRecord::Base
 
   default_scope { order(:name) }
 
+  # Notify user the label has been deleted
+  after_destroy {|label| user.notify :label_deleted, document}
+
   def to_s
     name
   end

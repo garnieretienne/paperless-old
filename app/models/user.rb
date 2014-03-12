@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   # Events
   on :document_updated, :train_classifier_with_document
+  on :label_deleted, :delete_label_from_classifier
 
   DEFAULT_LABELS = [
     "Insurance", 
@@ -29,31 +30,24 @@ class User < ActiveRecord::Base
 
       category_to_untrain = document.label_id_changed? ? Label.find_by_id(document.label_id_was).try(:to_sym) : document.label.to_sym
       text_to_untrain = document.text_changed? ? document.text_was : document.text
-      classifier.untrain category_to_untrain, text_to_untrain
+      classifier.untrain category_to_untrain, text_to_untrain if category_to_untrain && text_to_untrain
       
       category_to_train = document.label.try(:to_sym)
       text_to_train = document.text
-      train_classifier category_to_train, text_to_train
+      classifier.train category_to_train, text_to_train if category_to_train && text_to_train
+
+      save!
     end
   end
 
-  serialize :classifier, Paperless::Classifier.new 
+  def delete_label_from_classifier(label)
+    classifier.delete_category label.to_sym
+    save!
+  end
+
+  serialize :classifier, Paperless::Classifier
 
   private
-  
-  def train_classifier(category, text)
-    if category && text
-      classifier.train category.to_sym, text
-      save!
-    end
-  end
-  
-  def untrain_classifier(category, text)
-    if category && text
-      classifier.untrain category.to_sym, text
-      save!
-    end
-  end
 
   def create_labels
     DEFAULT_LABELS.each do |label_name|

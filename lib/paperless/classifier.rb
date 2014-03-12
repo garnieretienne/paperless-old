@@ -20,15 +20,6 @@ module Paperless
       @classifier.classify(tokenize(text)).max_class
     end
 
-    def dump(object)
-      @classifier.dump(@classifier)
-    end
-
-    def load(yaml)
-      @classifier.load(yaml)
-      self
-    end
-
     def categories
       @classifier.data.categories
     end
@@ -39,6 +30,10 @@ module Paperless
 
     def count_tokens(category)
       @classifier.data.token_count category
+    end
+
+    def delete_category(category)
+      @classifier.delete_category category
     end
 
     private

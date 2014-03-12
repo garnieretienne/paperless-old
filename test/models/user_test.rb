@@ -30,6 +30,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not_empty @user.labels
   end
 
+  test "should save the state of classifier" do
+    @user.classifier.train :testing, "This is a test"
+    @user.save!
+    user = User.find(@user.id)
+    assert_equal user.classifier.count_tokens(:testing), @user.classifier.count_tokens(:testing)
+  end
+
   test "should train classifier with a document if the document text has changed" do
     user = users(:etienne)
     document = user.documents.first
@@ -64,6 +71,15 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "should delete category from classifier" do
+    user = users(:etienne)
+    classifier = user.classifier
+    label = user.documents.first.label
+    assert_difference "classifier.categories.count", -1 do
+      user.delete_label_from_classifier(label)
+    end
+  end
+
   private
 
   def train_users_classifier
@@ -74,6 +90,7 @@ class UserTest < ActiveSupport::TestCase
           user.classifier.train label.to_sym, document.text
         end
       end
+      user.save!
     end
   end
 end

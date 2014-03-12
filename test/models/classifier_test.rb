@@ -18,12 +18,6 @@ class ClassifierTest < ActiveSupport::TestCase
     assert_not_equal :good, @classifier.classify("I'm the good one")
   end
 
-  test "rails serialization" do
-    dump = @classifier.dump(@classifier)
-    assert_not_nil dump
-    assert_instance_of Paperless::Classifier, @classifier.load(dump)
-  end
-
   test "categories list" do
     assert @classifier.categories.include?(:good)
   end
@@ -34,5 +28,10 @@ class ClassifierTest < ActiveSupport::TestCase
 
   test "count tokens" do
     assert_equal 4, @classifier.count_tokens(:good)
+  end
+
+  test "delete category" do
+    @classifier.delete_category :bad
+    assert !@classifier.categories.include?(:bad)
   end
 end

@@ -45,7 +45,7 @@ module Paperless
     # Load the classifier from the YAML data and execute NBayes 
     # special loading behavior.
     def self.load(yaml)
-      paperless_classifier = yaml.nil? ? Paperless::Classifier.new : YAML.load(yaml)
+      paperless_classifier = (yaml.nil? || yaml == "--- \n...\n") ? Paperless::Classifier.new : YAML.load(yaml)
       paperless_classifier.classifier.reset_after_import
       paperless_classifier
     end

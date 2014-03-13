@@ -1,0 +1,17 @@
+@import "globals/all";
+
+// Simple label with action support
+
+.label {
+  @include labelled;
+}
+
+.label-action {
+  display: none;
+  font-weight: bold;
+  padding-right: 0.2em;
+}
+
+.label:hover > .label-action {
+  display: inherit;
+}

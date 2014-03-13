@@ -1,10 +1,10 @@
-%table.documents-inbox{data: {update_in_inbox: true}}
+%table.inbox{data: {update_in_inbox: true}}
   - @documents.each do |document|
-    %tr.documents-inbox-document.document-droppable-area{"data-document-path" => document_update_in_inbox_path(document.id)}
-      %td.documents-inbox-document-title
+    %tr.inbox-document.document-droppable-area{"data-document-path" => document_update_in_inbox_path(document.id)}
+      %td
         = link_to document.title, document_path(document.id)
         - if document.label
-          %span.documents-inbox-document-label
-            %span.documents-inbox-document-label-remove= link_to "X", "#"
+          %span.label
+            %span.label-action= link_to "x", "#"
             = document.label
-      %td.documents-inbox-document-date= document.created_at.to_date.to_formatted_s(:long)
+      %td.inbox-document-date= document.created_at.to_date.to_formatted_s(:long)

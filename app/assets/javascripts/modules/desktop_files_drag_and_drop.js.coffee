@@ -15,17 +15,17 @@ $(document).on "page:change", ->
   $(document).on "dragenter", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    $filesDragAndDrop.toggleClass("is-active")
+    $filesDragAndDrop.toggleClass("is-drag-and-drop-files-active")
 
   $(document).on "dragleave", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    $filesDragAndDrop.toggleClass("is-active")
+    $filesDragAndDrop.toggleClass("is-drag-and-drop-files-active")
     
   $filesDragAndDrop.on "drop", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    $filesDragAndDrop.toggleClass("is-active")
+    $filesDragAndDrop.toggleClass("is-drag-and-drop-files-active")
     files = e.dataTransfer.files
     $.each files, (index, file) ->
       data = new FormData()

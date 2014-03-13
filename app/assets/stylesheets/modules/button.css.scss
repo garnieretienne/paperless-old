@@ -1,6 +1,7 @@
 @import "globals/all";
 
 // Simple button
+
 .button {
   display: inline-block;
   padding: 0.4em;
@@ -17,7 +18,6 @@
   text-align: center;
 }
 
-// Dangerous action button
 .button-warning {
   background-color: $red;
 }

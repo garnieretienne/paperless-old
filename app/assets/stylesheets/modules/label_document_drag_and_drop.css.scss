@@ -1,22 +1,12 @@
 @import "globals/all";
 
-// Style for labels when dragged
-.label-draggable {
+// Style for labels when dragged and dropped in
 
-  &:hover {
-    background-color: lighten($green, 40%);
-  }
-
-  &.is-dragging {
-    @include labelled;
-    cursor: move;
-  }
+.is-label-draggable-dragging {
+  @include labelled;
+  cursor: move;
 }
 
-// Style for documents when dropped in
-.document-droppable-area {
-  
-  &.is-hover {
-    background-color: darken($white, 10%);
-  }
+.is-document-droppable-area-hover {
+  background-color: darken($white, 10%);
 }

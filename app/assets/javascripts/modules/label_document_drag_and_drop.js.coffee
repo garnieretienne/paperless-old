@@ -4,10 +4,10 @@ $(document).on "page:change", ->
   # Allow to classify documents using Drag and Drop
   $(".label-draggable").draggable
     start: (e, ui) ->
-      $(ui.helper).addClass("is-dragging")
+      $(ui.helper).addClass("is-label-draggable-dragging")
     helper: "clone"
   $(".document-droppable-area").droppable
-    hoverClass: "is-hover"
+    hoverClass: "is-document-droppable-area-hover"
     drop: ( event, ui ) ->
       $document = $(event.target)
       $label = $(ui.draggable)

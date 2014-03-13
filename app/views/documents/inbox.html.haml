@@ -1,10 +1,1 @@
-%table.documents-inbox
-  - @documents.each do |document|
-    %tr.documents-inbox-document.document-droppable-area{"data-document-path" => document_path(document.id)}
-      %td.documents-inbox-document-title
-        = link_to document.title, document_path(document.id)
-        - if document.label
-          %span.documents-inbox-document-label
-            %span.documents-inbox-document-label-remove= link_to "X", "#"
-            = document.label
-      %td.documents-inbox-document-date= document.created_at.to_date.to_formatted_s(:long)
+= render 'modules/documents_inbox'

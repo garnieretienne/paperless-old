@@ -6,22 +6,19 @@ class DocumentsController < ApplicationController
     @documents = @label ? @label.documents : current_user.documents.unclassed
   end
 
-  def inbox
-    @label = "Inbox"
-    @documents = current_user.documents.recent
-  end
-
   def create
     @document = current_user.documents.new_from_file(document_params)
     save_document = @document.save
 
     respond_to do |format|
       format.html { save_document ? redirect_to(document_path(@document.id)) : render(:new) }
-      format.js do
-        @redirect_to = inbox_documents_path
-        render "shared/redirect"
-      end
+      format.js { @documents = current_user.documents.recent }
     end
+  end
+
+  def show
+    @document = current_user.documents.find(params[:id])
+    @pages = @document.pages.order(:number)
   end
 
   def edit
@@ -30,12 +27,7 @@ class DocumentsController < ApplicationController
 
   def update
     @document = current_user.documents.find(params[:id])
-    update_document = @document.update(document_params)
-
-    respond_to do |format|
-      format.html { update_document ? redirect_to(document_path(@document.id)) : render(:new) }
-      format.js { render "shared/reload"}
-    end
+    @document.update(document_params) ? redirect_to(document_path(@document.id)) : render(:edit)
   end
 
   def destroy
@@ -44,16 +36,28 @@ class DocumentsController < ApplicationController
     redirect_to documents_path
   end
 
-  def show
-    @document = current_user.documents.find(params[:id])
-    @pages = @document.pages.order(:number)
+  # Display the user inbox
+  def inbox
+    @label = "Inbox"
+    @documents = current_user.documents.recent
   end
 
+  # TODO: add support for errors
+  def update_in_inbox
+    document = current_user.documents.find(params[:document_id])
+    update_document = document.update(document_params)
+    @documents = current_user.documents.recent
+
+    respond_to{|format| format.js}
+  end
+
+  # Download the document
   def download
     document = current_user.documents.find(params[:document_id])
     send_file document.file.url, filename: document.to_filename
   end
 
+  # Display the document thumb
   def thumb
     document = current_user.documents.find params[:document_id]
     serve_image document.thumb.url, document.created_at, document.cache_key

@@ -1,5 +1,5 @@
 # Allow Drag and Drop file on the app to start upload
-$(document).ready ->
+$(document).on "page:change", ->
 
   # Unlock the dataTransfer property in JQuery
   # Originally solved by Tim Branyen in his drop file plugin
@@ -35,6 +35,4 @@ $(document).ready ->
         data: data,
         dataType: "script",
         processData: false, 
-        contentType: false,
-        success: (data) ->
-          alert(data)
+        contentType: false

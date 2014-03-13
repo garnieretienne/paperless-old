@@ -7,6 +7,7 @@ Paperless::Application.routes.draw do
   resources :documents do
     get :download
     get :thumb
+    patch :update_in_inbox
     collection do
       get :inbox
     end

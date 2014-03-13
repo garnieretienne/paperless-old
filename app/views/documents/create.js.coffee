@@ -1,0 +1,1 @@
+<%= render_using_javascript "modules/documents_inbox", "[data-update-in-inbox]" %>

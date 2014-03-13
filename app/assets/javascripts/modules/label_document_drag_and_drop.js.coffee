@@ -1,5 +1,5 @@
 # Allow to classify documents using Drag and Drop
-$(document).ready ->
+$(document).on "page:change", ->
 
   # Allow to classify documents using Drag and Drop
   $(".label-draggable").draggable

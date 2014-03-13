@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
 
   after_create :create_labels
 
-  # Events
-  on :document_updated, :train_classifier_with_document
-  on :label_deleted, :delete_label_from_classifier
+  # Events (Disabled until good training sample)
+  #on :document_updated, :train_classifier_with_document
+  #on :label_deleted, :delete_label_from_classifier
 
   DEFAULT_LABELS = [
     "Insurance", 

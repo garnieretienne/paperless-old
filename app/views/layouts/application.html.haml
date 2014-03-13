@@ -14,7 +14,7 @@
     #content
       #content-navigation
         %ul.labels-list
-          %li{class: (@label.to_s == "Inbox" ? "is_current" : "")}= link_to "Inbox", inbox_documents_path
+          %li{class: (@label.to_s == "Inbox" ? "labels-list-current" : "")}= link_to "Inbox", inbox_documents_path
           %li{class: (@label.nil? ? "is_current" : "")}= link_to "Unclassed", documents_path
           %hr
           %li= link_to "Add label", new_label_path, class: "button"

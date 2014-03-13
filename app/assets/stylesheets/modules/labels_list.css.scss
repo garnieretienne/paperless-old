@@ -3,19 +3,19 @@
 // List of labels for navigation
 .labels-list {
   list-style-type: none;
-  padding: 1em;
+  padding: 0;
   margin: 0;
+}
 
-  hr {
-    border: 0;
-    @include separation(top);
-  }
+.labels-list > hr {
+  border: 0;
+  @include separation(top);
+}
 
-  li {
-    padding: 0.2em;
+.labels-list > li {
+  padding: 0.2em;
+}
 
-    &.is_current {
-      font-weight: bold;
-    }
-  }
+.labels-list-current {
+  font-weight: bold;
 }

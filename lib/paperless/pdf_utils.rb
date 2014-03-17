@@ -2,7 +2,7 @@ require "paperless/ocr"
 
 module Paperless
   
-  # Need poppler-utils installed
+  # Need poppler-utils and imagemagick installed
   class PDFUtils
     
     def self.convert_to_images(pdf_path, options = {})
@@ -56,6 +56,15 @@ module Paperless
       end
 
       text
+    end
+
+    def self.convert_to_pdf(image_path, options = {})
+      filename = options[:filename] || File.basename(image_path).sub(/\.[^\.]*$/, ".pdf")
+      output = options[:output] || "./"
+
+      `convert "#{image_path}" "#{output}/#{filename}"`
+
+      filename
     end
   end
 end

@@ -2,7 +2,7 @@ require 'ffi/aspell'
 
 module Paperless
 
-  # Need tesseract installed
+  # Need tesseract and imagemagick installed
   class OCR
     TESSERACT_LANGUAGE = ENV["TESSERACT_LANGUAGE"] || :eng
 

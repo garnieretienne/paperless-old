@@ -31,4 +31,11 @@ class PDFUtilsTest < ActiveSupport::TestCase
     assert assert_match /Lorem ipsum dolor sit amet/, extracted_text
     assert assert_match /Hello from picture !/, extracted_text
   end
+
+  test "should convert an image to a PDF file" do
+    image_path = fixture_file_path "image_ocr.jpg"
+    pdf_filename = Paperless::PDFUtils.convert_to_pdf image_path, output: @working_dir_path
+    assert_equal "image_ocr.pdf", pdf_filename
+    assert File.exist? "#{@working_dir_path}/#{pdf_filename}"
+  end
 end

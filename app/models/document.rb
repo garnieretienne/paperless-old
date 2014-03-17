@@ -13,6 +13,7 @@ class Document < ActiveRecord::Base
   scope :unclassed, -> {where(label_id: nil)}
   scope :recent, -> {where("created_at >= ?", 10.day.ago)}
 
+  before_validation :convert_images_to_pdf, on: :create
   after_commit :post_process, on: :create
 
   # Notify user a document has been updated
@@ -61,5 +62,16 @@ class Document < ActiveRecord::Base
   def post_process
     ExtractPagesWorker.perform_async(self.id)
     ExtractTextWorker.perform_async(self.id)
+  end
+
+  private
+
+  def convert_images_to_pdf
+    uploaded_file = file.file
+    if uploaded_file.content_type.start_with? "image/"
+      cache_dir = File.dirname(file.current_path)
+      pdf_file_path = Paperless::PDFUtils.convert_to_pdf file.current_path, output: File.dirname(file.current_path)
+      self.file = File.new "#{cache_dir}/#{pdf_file_path}"
+    end
   end
 end

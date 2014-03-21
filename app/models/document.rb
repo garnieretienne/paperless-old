@@ -8,6 +8,7 @@ class Document < ActiveRecord::Base
   validates :title, presence: true, uniqueness: {scope: :user_id}
   validates :file, presence: true
   validates :user, presence: true
+  validates :date, presence: true
 
   default_scope { order(created_at: :desc) }
   scope :unclassed, -> {where(label_id: nil)}
@@ -23,11 +24,9 @@ class Document < ActiveRecord::Base
     file = params[:file]
     filename = file.respond_to?(:original_filename) ? file.original_filename : File.basename(file)
     title = File.basename(filename, File.extname(filename)).titleize(humanize: false, underscore: false).gsub(/_/, ' ')
-    Document.new(title: title, file: file)
-  end
-
-  def date
-    created_at.to_date.to_formatted_s(:long)
+    document = Document.new(title: title, file: file)
+    document.date = document.parse_title_for_date || Date.today
+    document
   end
 
   def to_filename
@@ -62,6 +61,14 @@ class Document < ActiveRecord::Base
   def post_process
     ExtractPagesWorker.perform_async(self.id)
     ExtractTextWorker.perform_async(self.id)
+  end
+
+  def parse_title_for_date
+    begin
+      title.to_date
+    rescue
+      return nil
+    end
   end
 
   private

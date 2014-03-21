@@ -2,10 +2,11 @@ require 'test_helper'
 
 class DocumentTest < ActiveSupport::TestCase
 
+  # TODO: must have a date
   def setup
     @file = File.new fixture_file_path('empty.pdf')
     @owner = users(:etienne)
-    @document = Document.new title: "My Document", file: @file, user: @owner
+    @document = Document.new title: "My Document", file: @file, user: @owner, date: Date.today
   end
 
   test "should create a correct document" do
@@ -22,6 +23,12 @@ class DocumentTest < ActiveSupport::TestCase
     @document.user_id = nil
     assert !@document.valid?
     assert @document.errors[:user].include? "can't be blank"
+  end
+
+  test "must have a creation date" do
+    @document.date = nil
+    assert !@document.valid?
+    assert @document.errors[:date].include? "can't be blank"
   end
 
   test "title must be unique in the user scope" do
@@ -61,5 +68,13 @@ class DocumentTest < ActiveSupport::TestCase
     document.user = @owner
     assert document.valid?
     assert_equal "Empty", document.title
+    assert !document.date.nil?
+  end
+
+  test "extract date from the document name" do
+    @document.title = "2014-12-31 - Report about life"
+    assert_equal "2014-12-31", @document.parse_title_for_date.to_s
+    @document.title = "Report about life in 2014"
+    assert_nil @document.parse_title_for_date
   end
 end

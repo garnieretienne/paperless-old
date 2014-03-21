@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303220756) do
+ActiveRecord::Schema.define(version: 20140321134826) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "documents", force: true do |t|
     t.string   "title",      null: false
@@ -21,10 +24,11 @@ ActiveRecord::Schema.define(version: 20140303220756) do
     t.integer  "label_id"
     t.text     "text"
     t.integer  "user_id"
+    t.date     "date"
   end
 
-  add_index "documents", ["label_id"], name: "index_documents_on_label_id"
-  add_index "documents", ["user_id"], name: "index_documents_on_user_id"
+  add_index "documents", ["label_id"], name: "index_documents_on_label_id", using: :btree
+  add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
 
   create_table "labels", force: true do |t|
     t.string   "name",       null: false
@@ -33,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140303220756) do
     t.integer  "user_id"
   end
 
-  add_index "labels", ["user_id"], name: "index_labels_on_user_id"
+  add_index "labels", ["user_id"], name: "index_labels_on_user_id", using: :btree
 
   create_table "pages", force: true do |t|
     t.integer  "number",      null: false

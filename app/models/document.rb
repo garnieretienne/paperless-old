@@ -68,7 +68,7 @@ class Document < ActiveRecord::Base
 
   def convert_images_to_pdf
     uploaded_file = file.file
-    if uploaded_file.content_type.start_with? "image/"
+    if uploaded_file.present? && !uploaded_file.content_type.nil? && uploaded_file.content_type.start_with?("image/")
       cache_dir = File.dirname(file.current_path)
       pdf_file_path = Paperless::PDFUtils.convert_to_pdf file.current_path, output: File.dirname(file.current_path)
       self.file = File.new "#{cache_dir}/#{pdf_file_path}"

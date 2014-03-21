@@ -24,66 +24,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  bootstrap_script = <<-SCRIPT
-
-    echo ""
-    echo ">> Install dependencies"
-    echo ""
-
-    sudo apt-get update --assume-yes
-    sudo apt-get install --assume-yes git curl libyaml-dev libssl-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev build-essential
-
-    echo ""
-    echo ">> Installing rbenv and rvm-download"
-    echo ""
-
-    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.profile
-    echo 'eval "$(rbenv init -)"' >> ~/.profile
-    git clone https://github.com/garnieretienne/rvm-download.git ~/.rbenv/plugins/rvm-download
-    source ~/.profile
-
-    ruby_version=`cat /vagrant/.ruby-version`
-
-    echo ""
-    echo ">> Installing ruby ${ruby_version}"
-    echo ""
-
-    rbenv download $ruby_version
-    rbenv global $ruby_version
-    rbenv rehash
-
-    echo ""
-    echo ">> Building bundler gem"
-    echo ""
-
-    gem install bundler
-    rbenv rehash
-
-    echo ""
-    echo ">> Install app dependencies"
-    echo ""
-
-    sudo apt-get install --assume-yes redis-server imagemagick tesseract-ocr poppler-utils tesseract-ocr-fra libaspell-dev aspell-fr
-    
-    echo ""
-    echo ">> Run 'bundle install'"
-    echo ""
-
-    cd /vagrant
-    bundle install --path vendor/bundle
-
-    echo ""
-    echo ">> Run database migrations"
-    echo ""
-
-    bundle exec rake db:setup
-
-    echo ""
-    echo ">> Done."
-    echo "   You can start the app running 'bundle exec foreman start' inside the"
-    echo "   '/vagrant' folder."
-  SCRIPT
-  config.vm.provision "shell", :inline => bootstrap_script, :keep_color => true, :privileged => false
+  config.vm.provision "shell", :path => "bin/bootstrap", :keep_color => true, :privileged => false
 
 end

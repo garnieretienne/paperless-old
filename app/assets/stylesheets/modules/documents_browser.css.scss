@@ -13,7 +13,6 @@
 
 .documents-browser-display {
   @include columns(4);
-  background-color: $black;
 }
 
 .documents-browser-list > ul {

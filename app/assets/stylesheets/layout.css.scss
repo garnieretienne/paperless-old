@@ -1,7 +1,5 @@
 @import "globals/all";
 
-// Reusable grid and column classes
-
 #header {
   @include row(center);
   padding: 1em 0;
@@ -53,4 +51,15 @@
     @include columns(10);
     margin-top: 1em;
   }
+}
+
+#notification-area {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 0;
+  @include box-sizing(border-box);
+  width: 20em;
+  padding: 0.6em;
+  overflow: hidden;
 }

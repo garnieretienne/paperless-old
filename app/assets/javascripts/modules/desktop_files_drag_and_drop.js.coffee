@@ -28,6 +28,8 @@ $(document).on "page:change", ->
     $filesDragAndDrop.toggleClass("is-drag-and-drop-files-active")
     files = e.dataTransfer.files
     $.each files, (index, file) ->
+      console.log file
+      $notification = notification.notify "<strong>Uploading</strong> \"#{file.name}\"...", true
       data = new FormData()
       data.append 'file', file
       $.ajax $filesDragAndDrop.data("documents-path"),
@@ -35,4 +37,6 @@ $(document).on "page:change", ->
         data: data,
         dataType: "script",
         processData: false, 
-        contentType: false
+        contentType: false,
+        complete: ->
+          notification.hide $notification, 1

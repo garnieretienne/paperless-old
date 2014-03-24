@@ -1,0 +1,15 @@
+@import "globals/all";
+
+.notify {
+  @include reset-margins;
+  margin: 0.4em 0;
+  padding: 0.6em;
+  font-size: 0.8em;
+  text-align: center;
+  background: $white;
+  border: 1px solid lighten($gray, 40%);
+  border-radius: 2px;
+  padding: 0.6em;
+  opacity:0.9;
+  overflow: hidden;
+}

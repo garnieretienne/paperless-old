@@ -1,0 +1,27 @@
+@import "globals/all";
+
+// Module to browse a list of documents
+
+.documents-browser {
+  @include row;
+}
+
+.documents-browser-list {
+  @include columns(8);
+  @include separation(right);
+}
+
+.documents-browser-display {
+  @include columns(4);
+  background-color: $black;
+}
+
+.documents-browser-list > ul {
+  @include reset_margins;
+}
+
+.documents-browser-list-entry {
+  @include separation(bottom);
+  padding: 0.6em 0;
+  cursor: pointer
+}

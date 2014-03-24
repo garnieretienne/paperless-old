@@ -1,9 +1,0 @@
-%ul.documents-grid
-  - @documents.each do |document|
-    %li.document-thumb
-      = link_to document_path(document.id) do
-        = image_tag(document_thumb_path(document.id), class: "document-thumb-image thumb")
-        %p.document-thumb-caption
-          = document.title
-          %br
-          %span.document-thumb-caption-date= document.date

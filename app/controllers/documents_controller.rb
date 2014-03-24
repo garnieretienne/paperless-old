@@ -2,8 +2,8 @@ class DocumentsController < ApplicationController
   include ImageService
 
   def index
-    @label = current_user.labels.find_by(id: params[:label_id])
-    @documents = @label ? @label.documents : current_user.documents.unclassed
+    @label = "Inbox"
+    @documents = current_user.documents.all
   end
 
   def create
@@ -36,18 +36,18 @@ class DocumentsController < ApplicationController
     redirect_to documents_path
   end
 
-  # Display the user inbox
-  def inbox
-    @label = "Inbox"
-    @documents = current_user.documents.recent
-  end
-
-  # TODO: add support for errors
+  # AJAX - Refresh the document list
   def update_in_inbox
     document = current_user.documents.find(params[:document_id])
     update_document = document.update(document_params)
     @documents = current_user.documents.recent
 
+    respond_to{|format| format.js}
+  end
+
+  # AJAX - Display a document summary
+  def display_summary
+    @document = current_user.documents.find(params[:document_id])
     respond_to{|format| format.js}
   end
 

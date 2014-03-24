@@ -1,13 +1,13 @@
 Paperless::Application.routes.draw do
 
-  resources :labels do
-    resources :documents
-  end
+  get 'labels/:id/:name' => 'labels#show', as: :label
+  resources :labels
 
   resources :documents do
     get :download
     get :thumb
     patch :update_in_inbox
+    get :display_summary
     collection do
       get :inbox
     end

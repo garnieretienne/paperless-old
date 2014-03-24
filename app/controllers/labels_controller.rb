@@ -13,6 +13,12 @@ class LabelsController < ApplicationController
     end
   end
 
+  def show
+    @label = current_user.labels.find(params[:id])
+    @documents = @label.documents
+    render "documents/index"
+  end
+
   private
 
   def label_params

@@ -14,11 +14,11 @@
     #content
       #content-navigation
         %ul.labels-list
-          %li{class: (@label.to_s == "Inbox" ? "labels-list-current" : "")}= link_to "Inbox", inbox_documents_path
-          %li{class: (@label.nil? ? "is_current" : "")}= link_to "Unclassed", documents_path
+          %li{class: (@label.to_s == "Inbox" ? "is-label-selected" : "")}= link_to "Inbox", documents_path
+          %hr
+          - @labels.each do |label|
+            %li{class: (@label.to_s == label.to_s ? "is-label-selected" : "")}= link_to label.name, label_path(label.id, name: label.to_sym), class: "label-draggable", "data-label-id" => label.id
           %hr
           %li= link_to "Add label", new_label_path, class: "button"
-          - @labels.each do |label|
-            %li{class: (@label.to_s == label.to_s ? "is_current" : "")}= link_to label.name, label_documents_path(label.id), class: "label-draggable", "data-label-id" => label.id
       #content-main
         = yield

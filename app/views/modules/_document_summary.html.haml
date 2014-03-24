@@ -1,0 +1,15 @@
+.document-summary
+  - if defined? document
+    %header
+      %h3.document-summary-title= document.title
+      %p.document-summary-info
+        = "#{document.pages.count} pages"
+        = "-"
+        = "dated at #{document.date}"
+    .document-summary-first-page
+      = image_tag(document_thumb_path(document.id), class: "thumb")
+    .document-summary-actions
+      = link_to "View this document", document_path(document.id), class: "button"
+      = link_to "Download this document", document_download_path(document.id), class: "button"
+  - else
+    %p.document-summary-select-document-text Select a document to display its summary

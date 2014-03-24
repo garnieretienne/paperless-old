@@ -1,0 +1,6 @@
+.document-row
+  = document.title
+  - if document.label
+    %span.label
+      %span.label-action= link_to "x", "#"
+      = document.label

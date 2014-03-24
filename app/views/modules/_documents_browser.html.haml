@@ -1,0 +1,8 @@
+.documents-browser{data: {update_in_inbox: true}}
+  .documents-browser-list
+    %ul
+      - documents.each do |document|
+        %li.documents-browser-list-entry.document-droppable-area{data: {document_display_summary_path: document_display_summary_path(document.id), document_path: document_update_in_inbox_path(document.id)}}
+          = render partial: "modules/document_row", locals: {document: document}
+  .documents-browser-display{data: {display_summary: true}}
+    = render partial: "modules/document_summary"

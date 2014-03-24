@@ -1,0 +1,1 @@
+<%= render_using_javascript "modules/document_summary", "[data-display-summary]", document: @document %>

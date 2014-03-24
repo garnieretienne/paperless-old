@@ -1,0 +1,40 @@
+@import "globals/all";
+
+// Display a Document summary containing main information and actions
+
+.document-summary {
+  background-color: $black;
+  color: $white;
+  padding: 0.6em;
+}
+
+.document-summary > header {
+  margin-bottom: 1em;
+}
+
+.document-summary-info {
+  @include reset_margins;
+  color: $gray;
+  font-size: 0.8em;
+}
+
+.document-summary-title {
+  @include reset_margins;
+}
+
+.document-summary-first-page {
+  text-align: center;
+}
+
+.document-summary-first-page > img {
+  max-width: 100%;
+}
+
+.document-summary-select-document-text {
+  text-align: center;
+  padding-top: 2em;
+}
+
+.document-summary-actions > .button {
+  display: block;
+}

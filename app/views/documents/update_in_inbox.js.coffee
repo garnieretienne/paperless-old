@@ -1,1 +1,1 @@
-<%= render_using_javascript "modules/documents_inbox" %>
+<%= render_using_javascript "modules/documents_browser", "[data-update-in-inbox]", documents: @documents %>
